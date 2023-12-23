@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "7e205530-8ee6-4e90-8ad9-4c935a33dfbf",
+		"name": "Medico-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31715014"
+	},
+	"item": [
+		{
+			"name": "GetProducts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http:/{{Base_URL}}/get-products",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"get-products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRegisteredUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"4 Users Fetched Successfully.\");\r",
+							"});\r",
+							"var jsonObject = xml2Json(responseBody);\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http:/{{Base_URL}}/get-users",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"get-users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 999,\r\n        \"image\": \"1.png\",\r\n        \"name\": \"Disprin\",\r\n        \"category\": \"medicine\",\r\n        \"brand\": \"BZ Medico\",\r\n        \"status\": 1,\r\n        \"price\": 100\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http:/{{Base_URL}}/add-product",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"add-product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProduct",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 999,\r\n        \"image\": \"2.png\",\r\n        \"name\": \"Disprin+\",\r\n        \"category\": \"medicine\",\r\n        \"brand\": \"BZ Medico\",\r\n        \"status\": 1,\r\n        \"price\": 120\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http:/{{Base_URL}}/update-product",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"update-product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProductStatus",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 999,\r\n        \"image\": \"2.png\",\r\n        \"name\": \"Disprin+\",\r\n        \"category\": \"medicine\",\r\n        \"brand\": \"BZ Medico\",\r\n        \"status\": 0,\r\n        \"price\": 120\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http:/{{Base_URL}}/update-product-status",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"update-product-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProduct",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http:/{{Base_URL}}/delete-product?id=101",
+					"host": [
+						"http"
+					],
+					"port": "",
+					"path": [
+						"{{Base_URL}}",
+						"delete-product"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "101"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
